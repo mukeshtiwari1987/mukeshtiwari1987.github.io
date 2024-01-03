@@ -9,16 +9,96 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" type="text/css" href="../styles.css">
+    <style>
+        td {
+            white-space: nowrap;
+        }
+
+        table {
+            border: 1px solid #b3adad;
+            border-collapse: collapse;
+            padding: 5px;
+        }
+
+        table th {
+            border: 1px solid #b3adad;
+            padding: 5px;
+            background: #f0f0f0;
+            color: #313030;
+        }
+
+        table td {
+            border: 1px solid #b3adad;
+            text-align: left;
+            padding: 5px;
+            background: #ffffff;
+            color: #313030;
+        }
+    </style>
 </head>
 
 <body>
     <center>
         <h3>Robot Framework Assignment 3</h3>
-        <h4>Use Selenium with Robotframework and search 'ai will take over the world' on Google. Click the first link on
-            the search page.</h4>
-        <h5> Assert the <i>URL of the website</i> and <i> Title of the website</i>
-        </h5>
-    </center>
+        <table>
+            <thead>
+                <tr>
+                    <th>Module</th>
+                    <th>URL</th>
+                    <th>Task</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Login Page</td>
+                    <td>https://the-internet.herokuapp.com/login</td>
+                    <td>
+                        <font color="#313030" style="color: rgb(49, 48, 48);">1. Enter Username and Password</font><br>
+                        <font color="#313030" style="color: rgb(49, 48, 48);">2.Assert if you are loggedn in<br></font>
+                        <font color="#313030">3.Logout from the page and Assert if you are logged out</font><br>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Dropdown List</td>
+                    <td>https://the-internet.herokuapp.com/dropdown</td>
+                    <td>1.Select the 'Option 2' from dropdown</td>
+                </tr>
+                <tr>
+                    <td>Checkboxes</td>
+                    <td>https://the-internet.herokuapp.com/checkboxes</td>
+                    <td>1.Click the 'checkbox 1' and Assert if it is checked<br>2.Click the 'checkbox
+                        2' and Assert if it is unchecked</td>
+                </tr>
+                <tr>
+                    <td>Add/Remove Elements</td>
+                    <td>https://the-internet.herokuapp.com/add_remove_elements</td>
+                    <td>1.Click 'Add Element' box two times and Assert if 'Delete' button is visible two
+                        times<br>2.Click 'Delete' box one time and Assert if 'Delete' button is visible one time
+                    </td>
+                </tr>
+                <tr>
+                    <td>Context Menu</td>
+                    <td>https://the-internet.herokuapp.com/context_menu</td>
+                    <td>1.Right Click on White box and assert the text 'You selected a context menu' which
+                        appeared on Javascript alert prompt<br>2.Click OK once done</td>
+                </tr>
+                <tr>
+                    <td>Key Presses</td>
+                    <td>https://the-internet.herokuapp.com/key_presses</td>
+                    <td>1.Press TAB key in the Input box and Assert the text 'You entered: TAB'</td>
+                </tr>
+                <tr>
+                    <td>Drag and Drop</td>
+                    <td>https://the-internet.herokuapp.com/drag_and_drop</td>
+                    <td>1.Swap the position of Box B by Box A and take screenshot</td>
+                </tr>
+                <tr>
+                    <td>Hovers</td>
+                    <td>https://the-internet.herokuapp.com/hovers</td>
+                    <td>1. Do a Mouse Hover on first profile and assert 'name: user1'</td>
+                </tr>
+            </tbody>
+        </table>
 </body>
 
 </html>
