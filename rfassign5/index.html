@@ -9,16 +9,98 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" type="text/css" href="../styles.css">
+    <style>
+        td {
+            white-space: nowrap;
+        }
+
+        table {
+            border: 1px solid #b3adad;
+            border-collapse: collapse;
+            padding: 5px;
+        }
+
+        table th {
+            border: 1px solid #b3adad;
+            padding: 5px;
+            background: #f0f0f0;
+            color: #313030;
+        }
+
+        table td {
+            border: 1px solid #b3adad;
+            text-align: left;
+            padding: 5px;
+            background: #ffffff;
+            color: #313030;
+        }
+    </style>
 </head>
 
 <body>
     <center>
         <h3>Robot Framework Assignment 5</h3>
-        <h4>Use Selenium with Robotframework and search 'ai will take over the world' on Google. Click the first link on
-            the search page.</h4>
-        <h5> Assert the <i>URL of the website</i> and <i> Title of the website</i>
-        </h5>
-    </center>
+        <table>
+            <thead>
+                <tr>
+                    <th>Module</th>
+                    <th>URL</th>
+                    <th>Task</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Infinite Scroll</td>
+                    <td><a href="https://the-internet.herokuapp.com/infinite_scroll" target="_blank"
+                            rel="noopener noreferrer">https://the-internet.herokuapp.com/infinite_scroll</td></a>
+                    <td>1.Scroll the page ten times</td>
+                </tr>
+                <tr>
+                    <td>Broken Images</td>
+                    <td><a href="https://the-internet.herokuapp.com/broken_images" target="_blank"
+                            rel="noopener noreferrer">https://the-internet.herokuapp.com/broken_images</td></a>
+                    <td>1.Assert two images are not loaded and one image is loaded</td>
+                </tr>
+                <tr>
+                    <td>Horizontal Slider</td>
+                    <td><a href="https://the-internet.herokuapp.com/horizontal_slider" target="_blank"
+                            rel="noopener noreferrer">https://the-internet.herokuapp.com/horizontal_slider</td></a>
+                    <td>1.Drag the horizontal slider to assert the text '2'</td>
+                </tr>
+                <tr>
+                    <td>Data Tables</td>
+                    <td><a href="https://the-internet.herokuapp.com/tables" target="_blank"
+                            rel="noopener noreferrer">https://the-internet.herokuapp.com/tables</td></a>
+                    <td>1.Sort the table 'Example 1' by 'Email'</td>
+                </tr>
+                <tr>
+                    <td>Dynamic Controls</td>
+                    <td><a href="https://the-internet.herokuapp.com/dynamic_controls" target="_blank"
+                            rel="noopener noreferrer">https://the-internet.herokuapp.com/dynamic_controls</td></a>
+                    <td>1.Click the 'Remove' button and Assert 'A checkbox' element is not visible<br>
+                        2.Click 'Enable' button, enter HELLO in Input box and take screenshot
+                    </td>
+                </tr>
+                <tr>
+                    <td>Dynamically Loaded Page Elements</td>
+                    <td><a href="https://the-internet.herokuapp.com/dynamic_loading/1" target="_blank"
+                            rel="noopener noreferrer">https://the-internet.herokuapp.com/dynamic_loading/1</td></a>
+                    <td>1.Click 'Start' button and Assert the text 'Hello World!'</td>
+                </tr>
+                <tr>
+                    <td>Disappearing Elements</td>
+                    <td><a href="https://the-internet.herokuapp.com/disappearing_elements" target="_blank"
+                            rel="noopener noreferrer">https://the-internet.herokuapp.com/disappearing_elements</td></a>
+                    <td>1.Reload the page until 'Gallery' tab is visible</td>
+                </tr>
+                <tr>
+                    <td>WYSIWYG Editor</td>
+                    <td><a href="https://the-internet.herokuapp.com/tinymce" target="_blank"
+                            rel="noopener noreferrer">https://the-internet.herokuapp.com/tinymce</td></a>
+                    <td>1.Replace the text 'Your content goes here.' with 'AI Rules'</td>
+                </tr>
+            </tbody>
+        </table>
 </body>
 
 </html>
