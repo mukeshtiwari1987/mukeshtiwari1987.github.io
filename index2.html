@@ -2,55 +2,345 @@
 <html lang="en">
 
 <head>
-  <title>Bootstrap Example</title>
+  <title>Mukesh Tiwari | Testing and Setup Hub</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <style>
+    :root {
+      --bg: #f6f7fb;
+      --panel: #ffffff;
+      --panel-soft: #eef7f6;
+      --text: #1f2937;
+      --muted: #667085;
+      --border: #d9e2ec;
+      --accent: #0f766e;
+      --accent-dark: #115e59;
+      --accent-soft: #ccfbf1;
+      --shadow: 0 18px 45px rgba(15, 23, 42, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at top left, rgba(15, 118, 110, 0.14), transparent 34rem),
+        linear-gradient(180deg, #ffffff 0%, var(--bg) 42%, #eef2f7 100%);
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.5;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .shell {
+      width: min(1120px, calc(100% - 40px));
+      margin: 0 auto;
+      padding: 48px 0 56px;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 24px;
+      align-items: end;
+      margin-bottom: 28px;
+    }
+
+    .eyebrow {
+      color: var(--accent-dark);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      margin: 0 0 10px;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      max-width: 760px;
+      margin: 0;
+      color: #111827;
+      font-size: clamp(34px, 5vw, 58px);
+      font-weight: 800;
+      line-height: 1.05;
+    }
+
+    .hero p {
+      max-width: 680px;
+      margin: 16px 0 0;
+      color: var(--muted);
+      font-size: 18px;
+    }
+
+    .quick-card {
+      min-width: 220px;
+      border: 1px solid rgba(15, 118, 110, 0.22);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.78);
+      box-shadow: var(--shadow);
+      padding: 18px;
+    }
+
+    .quick-card span {
+      display: block;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .quick-card strong {
+      display: block;
+      margin-top: 4px;
+      color: var(--accent-dark);
+      font-size: 28px;
+      line-height: 1;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .section {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.9);
+      box-shadow: var(--shadow);
+      padding: 22px;
+    }
+
+    .section.featured {
+      background: linear-gradient(135deg, #ffffff 0%, var(--panel-soft) 100%);
+      border-color: rgba(15, 118, 110, 0.26);
+    }
+
+    .section-header {
+      display: flex;
+      gap: 14px;
+      justify-content: space-between;
+      align-items: start;
+      margin-bottom: 16px;
+    }
+
+    h2 {
+      margin: 0;
+      color: #182230;
+      font-size: 22px;
+      font-weight: 750;
+      line-height: 1.2;
+    }
+
+    .count {
+      flex: 0 0 auto;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent-dark);
+      font-size: 12px;
+      font-weight: 800;
+      line-height: 1;
+      padding: 8px 10px;
+      text-transform: uppercase;
+    }
+
+    .links {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+      gap: 10px;
+    }
+
+    .link-card {
+      display: flex;
+      min-height: 52px;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      border: 1px solid #d6e4ec;
+      border-radius: 8px;
+      background: #ffffff;
+      color: #223044;
+      font-size: 15px;
+      font-weight: 700;
+      padding: 13px 14px;
+      transition: background 150ms ease, border-color 150ms ease, color 150ms ease, transform 150ms ease;
+    }
+
+    .link-card::after {
+      content: ">";
+      color: var(--accent);
+      font-weight: 900;
+    }
+
+    .link-card:hover,
+    .link-card:focus {
+      border-color: var(--accent);
+      background: #f0fdfa;
+      color: var(--accent-dark);
+      outline: none;
+      transform: translateY(-1px);
+    }
+
+    .wide {
+      grid-column: 1 / -1;
+    }
+
+    .footer {
+      margin-top: 22px;
+      color: var(--muted);
+      font-size: 13px;
+      text-align: center;
+    }
+
+    @media (max-width: 840px) {
+      .shell {
+        width: min(100% - 28px, 720px);
+        padding-top: 32px;
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+      }
+
+      .quick-card {
+        min-width: 0;
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .shell {
+        width: min(100% - 22px, 480px);
+      }
+
+      h1 {
+        font-size: 34px;
+      }
+
+      .hero p {
+        font-size: 16px;
+      }
+
+      .section {
+        padding: 18px;
+      }
+
+      .section-header {
+        display: block;
+      }
+
+      .count {
+        display: inline-block;
+        margin-top: 10px;
+      }
+
+      .links {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
 
 <body>
-  <div class="container">
-    <h3>Manual Testing Assignments</h3>
-    <a href="calc" class="btn btn-info" role="button">Calculator</a>
-    <a href="employee_search" class="btn btn-info" role="button">Employee Search</a>
-    <a href="cascading_dropdown" class="btn btn-info" role="button">Cascading Dropdown</a>
-    <a href="flag_game" class="btn btn-info" role="button">Flag Game</a>
-  </div>
-  <div class="container">
-    <h3>Programming Assignments</h3>
-    <a href="prog1" class="btn btn-info" role="button">Program1</a>
-    <a href="prog2" class="btn btn-info" role="button">Program2</a>
-    <a href="prog3" class="btn btn-info" role="button">Program3</a>
-    <a href="prog4" class="btn btn-info" role="button">Program4</a>
-    <a href="prog5" class="btn btn-info" role="button">Program5</a>
-  </div>
-  <div class="container">
-    <h3>SQL Assignments</h3>
-    <a href="sql1" class="btn btn-info" role="button">SQL1</a>
-  </div>
-  <div class="container">
-    <h3>Robot Framework Assignments</h3>
-    <a href="rfassign1" class="btn btn-info" role="button">RF Assignment 1</a>
-    <a href="rfassign2" class="btn btn-info" role="button">RF Assignment 2</a>
-    <a href="rfassign3" class="btn btn-info" role="button">RF Assignment 3</a>
-    <a href="rfassign4" class="btn btn-info" role="button">RF Assignment 4</a>
-    <a href="rfassign5" class="btn btn-info" role="button">RF Assignment 5</a>
-    <a href="rfassign6" class="btn btn-info" role="button">RF Assignment 6</a>
-  </div>
-  <div class="container">
-    <h3>AWS and Other Training</h3>
-    <a href="aws" class="btn btn-info" role="button">AWS</a>
-  </div>
-  <div class="container">
-    <h3>Form Testing</h3>
-    <a href="form1" class="btn btn-info" role="button">Form1</a>
-  </div>
-  <div class="container">
-    <h3>SetupAndConfiguration</h3>
-    <a href="typewhisper-automation-setup/typewhisper-automation-setup.html" class="btn btn-info" role="button">TypeWhisper Automation Setup</a>
-  </div>
+  <main class="shell">
+    <header class="hero">
+      <div>
+        <p class="eyebrow">Mukesh Tiwari</p>
+        <h1>Testing, training, and setup resources</h1>
+        <p>A compact launch page for assignments, practice tools, and configuration guides.</p>
+      </div>
+      <div class="quick-card" aria-label="Resource count">
+        <span>Available resources</span>
+        <strong>19</strong>
+      </div>
+    </header>
+
+    <div class="grid">
+      <section class="section">
+        <div class="section-header">
+          <h2>Manual Testing Assignments</h2>
+          <span class="count">4 links</span>
+        </div>
+        <div class="links">
+          <a href="calc" class="link-card">Calculator</a>
+          <a href="employee_search" class="link-card">Employee Search</a>
+          <a href="cascading_dropdown" class="link-card">Cascading Dropdown</a>
+          <a href="flag_game" class="link-card">Flag Game</a>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-header">
+          <h2>Programming Assignments</h2>
+          <span class="count">5 links</span>
+        </div>
+        <div class="links">
+          <a href="prog1" class="link-card">Program 1</a>
+          <a href="prog2" class="link-card">Program 2</a>
+          <a href="prog3" class="link-card">Program 3</a>
+          <a href="prog4" class="link-card">Program 4</a>
+          <a href="prog5" class="link-card">Program 5</a>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-header">
+          <h2>Robot Framework Assignments</h2>
+          <span class="count">6 links</span>
+        </div>
+        <div class="links">
+          <a href="rfassign1" class="link-card">RF Assignment 1</a>
+          <a href="rfassign2" class="link-card">RF Assignment 2</a>
+          <a href="rfassign3" class="link-card">RF Assignment 3</a>
+          <a href="rfassign4" class="link-card">RF Assignment 4</a>
+          <a href="rfassign5" class="link-card">RF Assignment 5</a>
+          <a href="rfassign6" class="link-card">RF Assignment 6</a>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-header">
+          <h2>Database and Cloud</h2>
+          <span class="count">2 links</span>
+        </div>
+        <div class="links">
+          <a href="sql1" class="link-card">SQL 1</a>
+          <a href="aws" class="link-card">AWS Training</a>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-header">
+          <h2>Form Testing</h2>
+          <span class="count">1 link</span>
+        </div>
+        <div class="links">
+          <a href="form1" class="link-card">Form 1</a>
+        </div>
+      </section>
+
+      <section class="section featured">
+        <div class="section-header">
+          <h2>Setup &amp; Configuration</h2>
+          <span class="count">1 guide</span>
+        </div>
+        <div class="links">
+          <a href="typewhisper-automation-setup/typewhisper-automation-setup.html" class="link-card">TypeWhisper Automation Setup</a>
+        </div>
+      </section>
+    </div>
+
+    <p class="footer">Use this page as the central entry point for current assignments and local setup references.</p>
+  </main>
 </body>
 
 </html>
