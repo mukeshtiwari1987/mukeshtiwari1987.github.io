@@ -156,10 +156,185 @@
       margin: 4px 0;
     }
 
+    .automation-card {
+      position: relative;
+      overflow: hidden;
+      margin: 16px 0 28px;
+      padding: 22px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, #4caf50 0%, #1b5e20 100%);
+      box-shadow: 0 24px 52px rgba(17, 78, 33, 0.28);
+      font-family: Inter, Poppins, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    .automation-card h3 {
+      margin: 0 0 18px;
+      color: #fff;
+      font-size: 26px;
+      font-weight: 800;
+      line-height: 1.15;
+      text-align: center;
+    }
+
+    .pipeline {
+      display: grid;
+      gap: 14px;
+    }
+
+    .phase-row {
+      position: relative;
+      display: grid;
+      grid-template-columns: 150px minmax(260px, 1fr) minmax(230px, 0.75fr);
+      gap: 16px;
+      align-items: center;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.9);
+      padding: 16px;
+    }
+
+    .phase-row:not(:last-child)::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      bottom: -18px;
+      width: 66px;
+      height: 28px;
+      border-right: 2px dashed #0f172a;
+      border-bottom: 2px dashed #0f172a;
+      border-radius: 0 0 24px 0;
+      transform: translateX(-50%);
+      opacity: 0.78;
+    }
+
+    .phase-row:not(:last-child)::before {
+      content: "→";
+      position: absolute;
+      left: calc(50% + 28px);
+      bottom: -26px;
+      color: #0f172a;
+      font-size: 18px;
+      font-weight: 900;
+      transform: rotate(90deg);
+      z-index: 2;
+    }
+
+    .phase-badge {
+      display: inline-flex;
+      width: fit-content;
+      align-items: center;
+      border-radius: 999px;
+      background: #e91e63;
+      color: #fff;
+      font-size: 13px;
+      font-weight: 800;
+      line-height: 1;
+      padding: 9px 13px;
+      white-space: nowrap;
+    }
+
+    .step-cluster {
+      display: grid;
+      gap: 10px;
+    }
+
+    .step-line {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .step {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      color: #0f172a;
+      font-size: 11px;
+      font-weight: 800;
+      line-height: 1.2;
+    }
+
+    .step-number {
+      display: inline-grid;
+      width: 26px;
+      height: 26px;
+      place-items: center;
+      border: 2px solid #0f172a;
+      border-radius: 999px;
+      background: #fff;
+      color: #0f172a;
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .avatar-line {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .avatar {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      border-radius: 999px;
+      background: #f8fafc;
+      color: #0f172a;
+      font-size: 11px;
+      font-weight: 800;
+      padding: 6px 9px 6px 6px;
+    }
+
+    .avatar-icon {
+      display: inline-grid;
+      width: 24px;
+      height: 24px;
+      place-items: center;
+      border-radius: 999px;
+      background: #dbeafe;
+      color: #1e3a8a;
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .tool-logos {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 8px;
+    }
+
+    .tool-logo {
+      display: inline-flex;
+      min-height: 30px;
+      align-items: center;
+      gap: 7px;
+      border: 1px solid rgba(15, 23, 42, 0.08);
+      border-radius: 8px;
+      background: #fff;
+      color: #0f172a;
+      font-size: 11px;
+      font-weight: 900;
+      padding: 6px 8px;
+      white-space: nowrap;
+    }
+
+    .tool-logo svg {
+      width: 16px;
+      height: 16px;
+      flex: 0 0 auto;
+      display: block;
+    }
+
     @media (max-width: 720px) {
       header, main { padding-left: 18px; padding-right: 18px; }
       h1 { font-size: 28px; }
       .toc { columns: 1; }
+      .automation-card { padding: 16px; }
+      .phase-row { grid-template-columns: 1fr; }
+      .tool-logos { justify-content: flex-start; }
+      .phase-row:not(:last-child)::after,
+      .phase-row:not(:last-child)::before { left: 28px; }
     }
   </style>
 </head>
@@ -176,6 +351,130 @@
   </header>
 
   <main>
+    <section id="automation-design">
+      <h2>Automation Design Pipeline</h2>
+      <div class="automation-card" role="img" aria-label="Vertical swimlane automation pipeline from planning through development, build and deploy">
+        <h3>TypeWhisper Meeting Notes Automation</h3>
+        <div class="pipeline">
+          <div class="phase-row">
+            <div><span class="phase-badge">Plan</span></div>
+            <div class="step-cluster">
+              <div class="avatar-line">
+                <span class="avatar"><span class="avatar-icon">PO</span>Product Owner</span>
+                <span class="avatar"><span class="avatar-icon">QA</span>QA Owner</span>
+              </div>
+              <div class="step-line">
+                <span class="step"><span class="step-number">1</span>Call trigger rules</span>
+                <span class="step"><span class="step-number">2</span>Meeting Notes workflow</span>
+                <span class="step"><span class="step-number">3</span>Verification checklist</span>
+              </div>
+            </div>
+            <div class="tool-logos" aria-label="Planning tools">
+              <span class="tool-logo">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#0052CC" d="M11.53 2.3 3.2 10.62a1.92 1.92 0 0 0 0 2.72l7.46 7.45 3.4-3.39-5.78-5.42 5.78-5.78-2.53-3.9z"/><path fill="#2684FF" d="m11.53 2.3 7.87 7.87a1.92 1.92 0 0 1 0 2.72l-8.74 7.9 3.4-3.39 5.03-5.42-7.56-9.68z"/></svg>
+                Jira
+              </span>
+              <span class="tool-logo">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#0ea5e9" d="M5 4h14a2 2 0 0 1 2 2v14l-4-3H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/><path fill="#fff" d="M7 8h10v1.7H7zm0 3.3h7v1.7H7z"/></svg>
+                Test Cases
+              </span>
+            </div>
+          </div>
+
+          <div class="phase-row">
+            <div><span class="phase-badge">Development</span></div>
+            <div class="step-cluster">
+              <div class="avatar-line">
+                <span class="avatar"><span class="avatar-icon">AU</span>Automation Developer</span>
+                <span class="avatar"><span class="avatar-icon">AI</span>Codex</span>
+              </div>
+              <div class="step-line">
+                <span class="step"><span class="step-number">4</span>Hammerspoon Lua watcher</span>
+                <span class="step"><span class="step-number">5</span>TypeWhisper API calls</span>
+                <span class="step"><span class="step-number">6</span>Git commits</span>
+              </div>
+            </div>
+            <div class="tool-logos" aria-label="Development tools">
+              <span class="tool-logo">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#24292f" d="M12 .8A11.2 11.2 0 0 0 8.46 22.62c.56.1.76-.24.76-.54v-1.91c-3.1.67-3.76-1.32-3.76-1.32-.5-1.28-1.24-1.62-1.24-1.62-1.02-.7.08-.68.08-.68 1.12.08 1.72 1.15 1.72 1.15 1 .1.76 2.42 2.94 1.72.1-.72.4-1.22.72-1.5-2.48-.28-5.08-1.24-5.08-5.52 0-1.22.44-2.22 1.16-3-.12-.28-.5-1.42.1-2.96 0 0 .94-.3 3.08 1.15A10.7 10.7 0 0 1 12 7.22c.96 0 1.92.13 2.82.38 2.14-1.45 3.08-1.15 3.08-1.15.6 1.54.22 2.68.1 2.96.72.78 1.16 1.78 1.16 3 0 4.3-2.6 5.24-5.08 5.52.4.34.76 1.02.76 2.06v3.09c0 .3.2.64.78.53A11.2 11.2 0 0 0 12 .8z"/></svg>
+                GitHub
+              </span>
+              <span class="tool-logo">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#2c7a7b" d="M12 2 3 7v10l9 5 9-5V7l-9-5z"/><path fill="#fff" d="M7 8.4h3.3v2.8H7zm6.7 0H17v2.8h-3.3zM10.4 13h3.3v2.8h-3.3z"/></svg>
+                Hammerspoon
+              </span>
+              <span class="tool-logo">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#111827" d="M4 5h16v14H4z"/><path fill="#22c55e" d="M7 8h10v2H7zm0 3.5h7v2H7zm0 3.5h9v2H7z"/></svg>
+                TypeWhisper
+              </span>
+            </div>
+          </div>
+
+          <div class="phase-row">
+            <div><span class="phase-badge">Build &amp; Package</span></div>
+            <div class="step-cluster">
+              <div class="avatar-line">
+                <span class="avatar"><span class="avatar-icon">CI</span>Build Runner</span>
+                <span class="avatar"><span class="avatar-icon">RE</span>Release Owner</span>
+              </div>
+              <div class="step-line">
+                <span class="step"><span class="step-number">7</span>Shell health checks</span>
+                <span class="step"><span class="step-number">8</span>Static guide package</span>
+                <span class="step"><span class="step-number">9</span>Groq finalizer check</span>
+              </div>
+            </div>
+            <div class="tool-logos" aria-label="Build and package tools">
+              <span class="tool-logo">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#F05032" d="m22.3 10.9-9.2-9.2a1.6 1.6 0 0 0-2.2 0L9 3.6l2.4 2.4a1.9 1.9 0 0 1 2.3 2.4l2.3 2.3a1.9 1.9 0 1 1-1.1 1.1L12.8 9.7v5.5a1.9 1.9 0 1 1-1.5 0V9.6a1.9 1.9 0 0 1-.9-2.5L8 4.7l-6.3 6.2a1.6 1.6 0 0 0 0 2.2l9.2 9.2a1.6 1.6 0 0 0 2.2 0l9.2-9.2a1.6 1.6 0 0 0 0-2.2z"/></svg>
+                Git
+              </span>
+              <span class="tool-logo">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#00ADD8" d="M12 3.4c3.8 0 6.9 3.1 6.9 6.9s-3.1 6.9-6.9 6.9-6.9-3.1-6.9-6.9S8.2 3.4 12 3.4z"/><path fill="#fff" d="M7.8 10.6h8.4v1.7H7.8zm1.3 3h5.8v1.6H9.1z"/></svg>
+                Shell
+              </span>
+              <span class="tool-logo">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#F55036" d="M12 2.5c5.25 0 9.5 4.25 9.5 9.5s-4.25 9.5-9.5 9.5S2.5 17.25 2.5 12 6.75 2.5 12 2.5z"/><path fill="#fff" d="M8 8h8v2H8zm0 3h8v2H8zm0 3h5v2H8z"/></svg>
+                Groq
+              </span>
+            </div>
+          </div>
+
+          <div class="phase-row">
+            <div><span class="phase-badge">Deploy</span></div>
+            <div class="step-cluster">
+              <div class="avatar-line">
+                <span class="avatar"><span class="avatar-icon">OP</span>Mac Operator</span>
+                <span class="avatar"><span class="avatar-icon">NO</span>Notes Reviewer</span>
+              </div>
+              <div class="step-line">
+                <span class="step"><span class="step-number">10</span>Slack/Teams call detection</span>
+                <span class="step"><span class="step-number">11</span>FSNotes Markdown note</span>
+                <span class="step"><span class="step-number">12</span>Published setup guide</span>
+              </div>
+            </div>
+            <div class="tool-logos" aria-label="Deployment tools">
+              <span class="tool-logo">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#4A154B" d="M5 5h14v14H5z"/><path fill="#36C5F0" d="M8 11a2 2 0 1 1 0-4h2v4z"/><path fill="#2EB67D" d="M13 7a2 2 0 1 1 4 0v2h-4z"/><path fill="#ECB22E" d="M16 13a2 2 0 1 1 0 4h-2v-4z"/><path fill="#E01E5A" d="M11 17a2 2 0 1 1-4 0v-2h4z"/></svg>
+                Slack
+              </span>
+              <span class="tool-logo">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#6264A7" d="M9 5h7a4 4 0 0 1 4 4v6a4 4 0 0 1-4 4H9z"/><path fill="#464775" d="M4 7h8v10H4z"/><path fill="#fff" d="M6 9h4v1.4H8.7V15H7.3v-4.6H6z"/></svg>
+                Teams
+              </span>
+              <span class="tool-logo">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#111827" d="M6 3h9l3 3v15H6z"/><path fill="#facc15" d="M8 8h8v1.7H8zm0 3.3h8v1.7H8zm0 3.3h5v1.7H8z"/></svg>
+                FSNotes
+              </span>
+              <span class="tool-logo">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#181717" d="M12 .8A11.2 11.2 0 0 0 8.46 22.62c.56.1.76-.24.76-.54v-1.91c-3.1.67-3.76-1.32-3.76-1.32-.5-1.28-1.24-1.62-1.24-1.62-1.02-.7.08-.68.08-.68 1.12.08 1.72 1.15 1.72 1.15 1 .1.76 2.42 2.94 1.72.1-.72.4-1.22.72-1.5-2.48-.28-5.08-1.24-5.08-5.52 0-1.22.44-2.22 1.16-3-.12-.28-.5-1.42.1-2.96 0 0 .94-.3 3.08 1.15A10.7 10.7 0 0 1 12 7.22c.96 0 1.92.13 2.82.38 2.14-1.45 3.08-1.15 3.08-1.15.6 1.54.22 2.68.1 2.96.72.78 1.16 1.78 1.16 3 0 4.3-2.6 5.24-5.08 5.52.4.34.76 1.02.76 2.06v3.09c0 .3.2.64.78.53A11.2 11.2 0 0 0 12 .8z"/></svg>
+                Pages
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section id="status">
       <h2>1. Final Known-Good State</h2>
       <p>The current machine was checked before this guide was created. These are the target values to reproduce.</p>
@@ -206,6 +505,7 @@ curl -sS http://127.0.0.1:8978/v1/dictation/status
     </section>
 
     <nav class="toc" aria-label="Table of contents">
+      <a href="#automation-design">Automation design pipeline</a>
       <a href="#install">2. Install applications</a>
       <a href="#permissions">3. macOS permissions</a>
       <a href="#groq">4. Groq integration</a>
