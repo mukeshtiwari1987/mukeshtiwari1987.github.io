@@ -7,15 +7,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
     :root {
-      --bg: #f6f7fb;
+      --header-bg: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+      --body-bg: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%);
       --panel: #ffffff;
-      --panel-soft: #eef7f6;
-      --text: #1f2937;
-      --muted: #667085;
-      --border: #d9e2ec;
-      --accent: #0f766e;
-      --accent-dark: #115e59;
-      --accent-soft: #ccfbf1;
+      --text: #0f172a;
+      --muted: #64748b;
+      --sidebar-text: #475569;
+      --sidebar-idle: #f1f5f9;
+      --sidebar-active: #1e293b;
+      --accent: #0ea5e9;
+      --badge-bg: #e0f2fe;
+      --badge-text: #0369a1;
+      --border: #e2e8f0;
       --shadow: 0 18px 45px rgba(15, 23, 42, 0.08);
     }
 
@@ -26,9 +29,7 @@
     body {
       margin: 0;
       min-height: 100vh;
-      background:
-        radial-gradient(circle at top left, rgba(15, 118, 110, 0.14), transparent 34rem),
-        linear-gradient(180deg, #ffffff 0%, var(--bg) 42%, #eef2f7 100%);
+      background: var(--body-bg);
       color: var(--text);
       font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       line-height: 1.5;
@@ -39,172 +40,215 @@
       text-decoration: none;
     }
 
-    .shell {
-      width: min(1120px, calc(100% - 40px));
-      margin: 0 auto;
-      padding: 48px 0 56px;
+    button {
+      font: inherit;
     }
 
     .hero {
+      background: var(--header-bg);
+      color: #ffffff;
+    }
+
+    .hero-inner {
       display: grid;
+      width: min(1120px, calc(100% - 40px));
+      margin: 0 auto;
+      padding: 48px 0;
       grid-template-columns: minmax(0, 1fr) auto;
-      gap: 24px;
+      gap: 28px;
       align-items: end;
-      margin-bottom: 28px;
     }
 
     .eyebrow {
-      color: var(--accent-dark);
-      font-size: 13px;
-      font-weight: 700;
-      letter-spacing: 0.08em;
       margin: 0 0 10px;
+      color: #94a3b8;
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
     }
 
     h1 {
       max-width: 760px;
       margin: 0;
-      color: #111827;
+      color: #ffffff;
       font-size: clamp(34px, 5vw, 58px);
       font-weight: 800;
       line-height: 1.05;
     }
 
-    .hero p {
+    .hero p:not(.eyebrow) {
       max-width: 680px;
       margin: 16px 0 0;
-      color: var(--muted);
+      color: #cbd5e1;
       font-size: 18px;
     }
 
     .quick-card {
       min-width: 220px;
-      border: 1px solid rgba(15, 118, 110, 0.22);
+      border: 1px solid rgba(203, 213, 225, 0.24);
       border-radius: 8px;
-      background: rgba(255, 255, 255, 0.78);
-      box-shadow: var(--shadow);
+      background: rgba(15, 23, 42, 0.24);
+      box-shadow: 0 16px 34px rgba(2, 6, 23, 0.18);
       padding: 18px;
     }
 
     .quick-card span {
       display: block;
-      color: var(--muted);
+      color: #cbd5e1;
       font-size: 13px;
-      font-weight: 700;
+      font-weight: 800;
       text-transform: uppercase;
     }
 
     .quick-card strong {
       display: block;
       margin-top: 4px;
-      color: var(--accent-dark);
+      color: #ffffff;
       font-size: 28px;
       line-height: 1;
     }
 
-    .grid {
+    .layout {
       display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 18px;
+      width: min(1120px, calc(100% - 40px));
+      margin: 0 auto;
+      padding: 34px 0 52px;
+      grid-template-columns: 160px minmax(0, 1fr);
+      gap: 28px;
+      align-items: start;
     }
 
-    .section {
+    .sidebar {
+      position: sticky;
+      top: 18px;
+      display: grid;
+      gap: 8px;
+    }
+
+    .sidebar-button {
+      width: 100%;
+      min-height: 46px;
+      border: 0;
+      border-left: 3px solid transparent;
+      border-radius: 8px;
+      background: #f1f5f9;
+      color: #475569;
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 750;
+      line-height: 1.25;
+      padding: 10px 12px;
+      text-align: left;
+      transition: background 150ms ease, color 150ms ease, border-color 150ms ease;
+    }
+
+    .sidebar-button:hover,
+    .sidebar-button:focus {
+      background: #1e293b;
+      color: #ffffff;
+      outline: none;
+    }
+
+    .sidebar-button.active {
+      border-left: 3px solid #0ea5e9;
+      background: #1e293b;
+      color: #ffffff;
+    }
+
+    .content-panel {
+      min-height: 420px;
       border: 1px solid var(--border);
       border-radius: 8px;
-      background: rgba(255, 255, 255, 0.9);
+      background: rgba(255, 255, 255, 0.92);
       box-shadow: var(--shadow);
-      padding: 22px;
-    }
-
-    .section.featured {
-      background: linear-gradient(135deg, #ffffff 0%, var(--panel-soft) 100%);
-      border-color: rgba(15, 118, 110, 0.26);
+      padding: 26px;
     }
 
     .section-header {
       display: flex;
       gap: 14px;
       justify-content: space-between;
-      align-items: start;
-      margin-bottom: 16px;
+      align-items: center;
+      margin-bottom: 18px;
     }
 
     h2 {
       margin: 0;
-      color: #182230;
-      font-size: 22px;
-      font-weight: 750;
-      line-height: 1.2;
+      color: #0f172a;
+      font-size: clamp(26px, 4vw, 36px);
+      font-weight: 800;
+      line-height: 1.15;
     }
 
     .count {
       flex: 0 0 auto;
       border-radius: 999px;
-      background: var(--accent-soft);
-      color: var(--accent-dark);
+      background: #e0f2fe;
+      color: #0369a1;
       font-size: 12px;
       font-weight: 800;
       line-height: 1;
-      padding: 8px 10px;
+      padding: 8px 11px;
       text-transform: uppercase;
+      white-space: nowrap;
     }
 
     .links {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
-      gap: 10px;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
     }
 
-    .link-card {
+    .link-row {
       display: flex;
-      min-height: 52px;
+      min-height: 58px;
       align-items: center;
       justify-content: space-between;
-      gap: 12px;
-      border: 1px solid #d6e4ec;
+      gap: 16px;
+      border: 1px solid #e2e8f0;
       border-radius: 8px;
       background: #ffffff;
-      color: #223044;
+      color: #1e293b;
       font-size: 15px;
-      font-weight: 700;
-      padding: 13px 14px;
-      transition: background 150ms ease, border-color 150ms ease, color 150ms ease, transform 150ms ease;
+      font-weight: 750;
+      padding: 15px 16px;
+      transition: border-color 150ms ease, box-shadow 150ms ease, transform 150ms ease;
     }
 
-    .link-card::after {
-      content: ">";
-      color: var(--accent);
-      font-weight: 900;
-    }
-
-    .link-card:hover,
-    .link-card:focus {
-      border-color: var(--accent);
-      background: #f0fdfa;
-      color: var(--accent-dark);
+    .link-row:hover,
+    .link-row:focus {
+      border-color: rgba(14, 165, 233, 0.58);
+      box-shadow: 0 10px 24px rgba(14, 165, 233, 0.12);
       outline: none;
       transform: translateY(-1px);
     }
 
-    .wide {
-      grid-column: 1 / -1;
+    .link-row span:first-child {
+      min-width: 0;
+      overflow-wrap: anywhere;
+    }
+
+    .arrow {
+      flex: 0 0 auto;
+      color: #0ea5e9;
+      font-size: 20px;
+      font-weight: 900;
+      line-height: 1;
     }
 
     .footer {
-      margin-top: 22px;
+      width: min(1120px, calc(100% - 40px));
+      margin: -26px auto 34px;
       color: var(--muted);
       font-size: 13px;
       text-align: center;
     }
 
-    @media (max-width: 840px) {
-      .shell {
+    @media (max-width: 760px) {
+      .hero-inner {
         width: min(100% - 28px, 720px);
-        padding-top: 32px;
-      }
-
-      .hero {
+        padding: 34px 0;
         grid-template-columns: 1fr;
       }
 
@@ -212,13 +256,31 @@
         min-width: 0;
       }
 
-      .grid {
+      .layout {
+        width: min(100% - 28px, 720px);
         grid-template-columns: 1fr;
+        gap: 18px;
+        padding-top: 24px;
+      }
+
+      .sidebar {
+        position: static;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .links {
+        grid-template-columns: 1fr;
+      }
+
+      .footer {
+        width: min(100% - 28px, 720px);
       }
     }
 
     @media (max-width: 520px) {
-      .shell {
+      .hero-inner,
+      .layout,
+      .footer {
         width: min(100% - 22px, 480px);
       }
 
@@ -226,11 +288,15 @@
         font-size: 34px;
       }
 
-      .hero p {
+      .hero p:not(.eyebrow) {
         font-size: 16px;
       }
 
-      .section {
+      .sidebar {
+        grid-template-columns: 1fr;
+      }
+
+      .content-panel {
         padding: 18px;
       }
 
@@ -242,17 +308,13 @@
         display: inline-block;
         margin-top: 10px;
       }
-
-      .links {
-        grid-template-columns: 1fr;
-      }
     }
   </style>
 </head>
 
 <body>
-  <main class="shell">
-    <header class="hero">
+  <header class="hero">
+    <div class="hero-inner">
       <div>
         <p class="eyebrow">Mukesh Tiwari</p>
         <h1>Testing, training, and setup resources</h1>
@@ -262,85 +324,116 @@
         <span>Available resources</span>
         <strong>19</strong>
       </div>
-    </header>
-
-    <div class="grid">
-      <section class="section">
-        <div class="section-header">
-          <h2>Manual Testing Assignments</h2>
-          <span class="count">4 links</span>
-        </div>
-        <div class="links">
-          <a href="calc" class="link-card">Calculator</a>
-          <a href="employee_search" class="link-card">Employee Search</a>
-          <a href="cascading_dropdown" class="link-card">Cascading Dropdown</a>
-          <a href="flag_game" class="link-card">Flag Game</a>
-        </div>
-      </section>
-
-      <section class="section">
-        <div class="section-header">
-          <h2>Programming Assignments</h2>
-          <span class="count">5 links</span>
-        </div>
-        <div class="links">
-          <a href="prog1" class="link-card">Program 1</a>
-          <a href="prog2" class="link-card">Program 2</a>
-          <a href="prog3" class="link-card">Program 3</a>
-          <a href="prog4" class="link-card">Program 4</a>
-          <a href="prog5" class="link-card">Program 5</a>
-        </div>
-      </section>
-
-      <section class="section">
-        <div class="section-header">
-          <h2>Robot Framework Assignments</h2>
-          <span class="count">6 links</span>
-        </div>
-        <div class="links">
-          <a href="rfassign1" class="link-card">RF Assignment 1</a>
-          <a href="rfassign2" class="link-card">RF Assignment 2</a>
-          <a href="rfassign3" class="link-card">RF Assignment 3</a>
-          <a href="rfassign4" class="link-card">RF Assignment 4</a>
-          <a href="rfassign5" class="link-card">RF Assignment 5</a>
-          <a href="rfassign6" class="link-card">RF Assignment 6</a>
-        </div>
-      </section>
-
-      <section class="section">
-        <div class="section-header">
-          <h2>Database and Cloud</h2>
-          <span class="count">2 links</span>
-        </div>
-        <div class="links">
-          <a href="sql1" class="link-card">SQL 1</a>
-          <a href="aws" class="link-card">AWS Training</a>
-        </div>
-      </section>
-
-      <section class="section">
-        <div class="section-header">
-          <h2>Form Testing</h2>
-          <span class="count">1 link</span>
-        </div>
-        <div class="links">
-          <a href="form1" class="link-card">Form 1</a>
-        </div>
-      </section>
-
-      <section class="section featured">
-        <div class="section-header">
-          <h2>Setup &amp; Configuration</h2>
-          <span class="count">1 guide</span>
-        </div>
-        <div class="links">
-          <a href="typewhisper-automation-setup/typewhisper-automation-setup.html" class="link-card">TypeWhisper Automation Setup</a>
-        </div>
-      </section>
     </div>
+  </header>
 
-    <p class="footer">Use this page as the central entry point for current assignments and local setup references.</p>
+  <main class="layout">
+    <nav class="sidebar" aria-label="Resource sections" id="sectionNav"></nav>
+
+    <section class="content-panel" aria-live="polite">
+      <div class="section-header">
+        <h2 id="sectionTitle">Manual Testing Assignments</h2>
+        <span class="count" id="sectionCount">4 links</span>
+      </div>
+      <div class="links" id="sectionLinks"></div>
+    </section>
   </main>
+
+  <p class="footer">Use this page as the central entry point for current assignments and local setup references.</p>
+
+  <script>
+    const sections = [
+      {
+        title: "Manual Testing Assignments",
+        links: [
+          { label: "Calculator", href: "calc" },
+          { label: "Employee Search", href: "employee_search" },
+          { label: "Cascading Dropdown", href: "cascading_dropdown" },
+          { label: "Flag Game", href: "flag_game" }
+        ]
+      },
+      {
+        title: "Programming Assignments",
+        links: [
+          { label: "Program 1", href: "prog1" },
+          { label: "Program 2", href: "prog2" },
+          { label: "Program 3", href: "prog3" },
+          { label: "Program 4", href: "prog4" },
+          { label: "Program 5", href: "prog5" }
+        ]
+      },
+      {
+        title: "Robot Framework Assignments",
+        links: [
+          { label: "RF Assignment 1", href: "rfassign1" },
+          { label: "RF Assignment 2", href: "rfassign2" },
+          { label: "RF Assignment 3", href: "rfassign3" },
+          { label: "RF Assignment 4", href: "rfassign4" },
+          { label: "RF Assignment 5", href: "rfassign5" },
+          { label: "RF Assignment 6", href: "rfassign6" }
+        ]
+      },
+      {
+        title: "Database and Cloud",
+        links: [
+          { label: "SQL 1", href: "sql1" },
+          { label: "AWS Training", href: "aws" }
+        ]
+      },
+      {
+        title: "Form Testing",
+        links: [
+          { label: "Form 1", href: "form1" }
+        ]
+      },
+      {
+        title: "Setup & Configuration",
+        links: [
+          { label: "TypeWhisper Automation Setup", href: "typewhisper-automation-setup/typewhisper-automation-setup.html" }
+        ]
+      }
+    ];
+
+    const sectionNav = document.getElementById("sectionNav");
+    const sectionTitle = document.getElementById("sectionTitle");
+    const sectionCount = document.getElementById("sectionCount");
+    const sectionLinks = document.getElementById("sectionLinks");
+
+    function linkLabel(count) {
+      return count === 1 ? "1 link" : `${count} links`;
+    }
+
+    function renderSection(activeIndex) {
+      const selected = sections[activeIndex];
+
+      sectionTitle.textContent = selected.title;
+      sectionCount.textContent = linkLabel(selected.links.length);
+      sectionLinks.innerHTML = selected.links.map((link) => `
+        <a href="${link.href}" class="link-row">
+          <span>${link.label}</span>
+          <span class="arrow" aria-hidden="true">→</span>
+        </a>
+      `).join("");
+
+      document.querySelectorAll(".sidebar-button").forEach((button, index) => {
+        const isActive = index === activeIndex;
+        button.classList.toggle("active", isActive);
+        button.setAttribute("aria-selected", String(isActive));
+      });
+    }
+
+    sections.forEach((section, index) => {
+      const button = document.createElement("button");
+      button.type = "button";
+      button.className = "sidebar-button";
+      button.textContent = section.title;
+      button.setAttribute("aria-selected", "false");
+      button.addEventListener("click", () => renderSection(index));
+      sectionNav.appendChild(button);
+    });
+
+    renderSection(0);
+  </script>
 </body>
 
 </html>
